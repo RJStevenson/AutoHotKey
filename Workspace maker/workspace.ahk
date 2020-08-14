@@ -7,35 +7,41 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetTitleMatchMode, 3 ; makes it so that it open titles with the exact name otherwise you will open other stuff with similar names
 ; Make the parameters an array
 ;locations and sizes for windows
-topright := [953,0, 974,547]  ;x y width height
-topleft  := [-7,0, 974,547]
-botright := [953,540, 974,547]
-botleft  := [-7,540, 974,547]
-fulleft   := [-7,0, 974,1087]
-fulright   := [953,0, 974,1087]
 
+global topright := [953,0, 974,547]  ;x y width height
+global topleft  := [-7,0, 974,547]
+global botright := [953,540, 974,547]
+global botleft  := [-7,540, 974,547]
+global fulleft  := [-7,0, 974,1087]
+global fulright := [953,0, 974,1087]
+global scr1     := 0   
 ; titles and file path of the applications
-unifolder := ["OneDrive - Nelson Mandela University", "C:\Users\hamst\OneDrive - Nelson Mandela University"] ; for example this the title of the filexplorer when it has open my university folder
-gitbash   := ["MINGW64:/c/Users/hamst/OneDrive - Nelson Mandela University", "C:\Program Files\Git\git-bash.exe" ]
-chrome    := ["ahk_exe chrome.exe", "chrome.exe"]
+global unifolder := ["OneDrive - Nelson Mandela University", "C:\Users\hamst\OneDrive - Nelson Mandela University"] ; for example this the title of the filexplorer when it has open my university folder
+global gitbash   := ["MINGW64:/c/Users/hamst/OneDrive - Nelson Mandela University", "C:\Program Files\Git\git-bash.exe" ]
+global chrome    := ["ahk_exe chrome.exe", "chrome.exe"]
+global pdf       := ["ahk_exe AcroRd32.exe", "C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"]
+global matlab    := ["MATLAB R2020a - academic use", "MATLAB.exe"]
 
-
-!7::
-{   ;possetup position and location, your title and file path
-    possetup(topright, test)
+work1()
+{   SetWorkingDir, C:\Users\hamst\OneDrive - Nelson Mandela University
+    possetup(botleft, unifolder)
+    possetup(topleft, gitbash) 
+    possetup(fulright, chrome)
     return
 }
-!8::
-{
-    ;WinSetup(unifolder*) ; Array* means to use the array for the parameters in your function call
-
-   ; WinSetup(gitbash*)
-    possetup(botleft,unifolder)
-    possetup(topleft,gitbash) 
-    possetup(fulright,chrome) 
+matlab()
+{   
+    SetWorkingDir, C:\Users\hamst\OneDrive - Nelson Mandela University
+    scr1 = 1920 ; for second screen
+    possetup(fulleft, matlab)
+    possetup(fulright, pdf)
     return
-
 }
+;
+;{   ;possetup position and location, your title and file path
+    ;possetup(topright, test)
+    ;return
+;}
 WinSetup(Title, X, Y, Width, Height, FilePath)
 {  
 	IfWinNotExist, %Title%
@@ -46,11 +52,15 @@ WinSetup(Title, X, Y, Width, Height, FilePath)
     WinRestore, %Title%
 	WinActivate, %Title%
 	WinMove, %Title%,, X, Y, Width, Height
-return
+    return
+  
 }
 
 possetup(pos1, file1)
-{            ;title     x         y         width   height  file location
-    WinSetup(file1[1] , pos1[1], pos1[2], pos1[3], pos1[4], file1[2])
+{  
+
+    
+           ;title     x         y         width   height  file location
+    WinSetup(file1[1] , pos1[1] + scr1, pos1[2], pos1[3], pos1[4], file1[2])
     return
 }
