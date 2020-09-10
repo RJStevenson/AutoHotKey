@@ -271,6 +271,10 @@ macros2(key1)
 	{	
 		work1()
 	}
+    else key1 = "num0"
+    {
+        work2()
+    }
 	return
 }
 
