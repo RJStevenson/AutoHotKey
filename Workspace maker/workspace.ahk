@@ -22,7 +22,7 @@ global gitbash   := ["MINGW64:/c/Users/hamst/OneDrive - Nelson Mandela Universit
 global chrome    := ["ahk_exe chrome.exe", "chrome.exe"]
 global pdf       := ["ahk_exe AcroRd32.exe", "C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe"]
 global matlab    := ["MATLAB R2020a - academic use", "MATLAB.exe"]
-global terminal  := ["WindowsTerminal.exe", "wt"]
+global terminal  := ["ahk_exe WindowsTerminal.exe", "wt"]
 global gitfolder := ["fucked up git here are the files", "C:\Users\hamst\OneDrive\Desktop\fucked up git here are the files"]
 global VisualStudio := ["devenv.exe", "devenv.exe"]
 work1()
@@ -54,7 +54,7 @@ matlab()
     ;return
 ;}
 WinSetup(Title, X, Y, Width, Height, FilePath)
-{  
+{       
 	IfWinNotExist, %Title%
 	{
 		Run, %FilePath%
