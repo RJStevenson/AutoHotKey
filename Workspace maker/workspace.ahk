@@ -24,7 +24,7 @@ global pdf       := ["ahk_exe AcroRd32.exe", "C:\Program Files (x86)\Adobe\Acrob
 global matlab    := ["MATLAB R2020a - academic use", "MATLAB.exe"]
 global terminal  := ["ahk_exe WindowsTerminal.exe", "wt"]
 global gitfolder := ["fucked up git here are the files", "C:\Users\hamst\OneDrive\Desktop\fucked up git here are the files"]
-global VisualStudio := ["devenv.exe", "devenv.exe"]
+global VisualStudio := ["ahk_exe devenv.exe", "devenv.exe"]
 work1()
 {   SetWorkingDir, C:\Users\hamst\OneDrive - Nelson Mandela University
     possetup(botleft, unifolder)
@@ -38,7 +38,7 @@ work2()
     possetup(botleft, gitfolder)
     possetup(topleft, terminal)
     possetup(fulright, chrome)
-    possetup(full_right_screen, VisualStudio)
+    possetup([2493, 281, 900, 630], VisualStudio)
 }
 matlab()
 {   
