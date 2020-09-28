@@ -39,26 +39,27 @@ Menu, Tray, Icon, shell32.dll, 283 ; this changes the tray icon to a little keyb
 
 
 F24::
-	FileRead, key, C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\keypressed.txt
-	FileRead, numpadf, C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
-
+    sfile1 = C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\keypressed.txt
+    sfile2 = C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
+	FileRead, key, %sfile1%
+	FileRead, numpadf, %sfile2%
 
 	if(key = "backspace")
 	{
-		FileRead, numpadf, C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
+		FileRead, numpadf, %sfile2%
 		if(numpadf = "0")
 		{
-			FileRead, Var1, C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
+			FileRead, Var1, %sfile2%
 			StringReplace, Var2, Var1, "1", dog, All
-			FileDelete, C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
-			FileAppend,1,C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
+			FileDelete, %sfile2%
+			FileAppend,1, %sfile2%
 		}
 		else if(numpadf = "1")||(numpadf = "2")
 		{	
-			FileRead, Var1, C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
+			FileRead, Var1, %sfile2%
 			StringReplace, Var2, Var1,"0", dog, All
-			FileDelete, C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
-			FileAppend,0, C:\Users\hamst\OneDrive\Documents\autohotkey second keyboard\numpadonoroff.txt
+			FileDelete, %sfile2%
+			FileAppend,0, %sfile2%
 		}
 
 	}
